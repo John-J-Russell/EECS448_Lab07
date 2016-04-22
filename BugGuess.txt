@@ -1,10 +1,14 @@
 Best guess for bug causes:
-1) list size starts at one, despite list being empty
-2) addBack broken
-3)
+1) list size starts at one, despite list being empty.
+	Is this two bugs? As m_size seems to begin as 1.
+2) addBack broken, but does increment size
+3) removeFront instead removes from the back.
 4)
 
 do removeFront and removeBack do the same thing?
+removeBack decrements size, but if no nodes are present, does not abort.
+
+Check size decrementation
 
 THINGS TESTED:
-AddFront appears to work, unless it adds to the back.
+AddFront appears to work, unless it adds to the back. No, yeah, it works.

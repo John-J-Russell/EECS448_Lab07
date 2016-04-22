@@ -1,0 +1,10 @@
+Best guess for bug causes:
+1) list size starts at one, despite list being empty
+2) addBack broken
+3)
+4)
+
+do removeFront and removeBack do the same thing?
+
+THINGS TESTED:
+AddFront appears to work, unless it adds to the back.

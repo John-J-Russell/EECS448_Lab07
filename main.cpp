@@ -11,10 +11,11 @@
 
 int main()
 {
-	
+	Test* tester= new Test();
 
+	tester->testLinkedList();
 
+	delete(tester);
 
-
-	return(1);
+	return(0);
 }

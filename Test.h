@@ -4,3 +4,26 @@
 	@FILE: test.h
 	@PURPOSE: lists the test classes and variables
 */
+
+#ifndef TEST_H
+#define TEST_H
+
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+
+#include "Node.h"
+#include "LinkedList.h"
+
+class Test
+{
+	public:
+
+	void testLinkedList();
+
+
+	private:
+
+
+};
+#endif

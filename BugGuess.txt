@@ -13,3 +13,10 @@ Check edge cases
 
 THINGS TESTED:
 AddFront appears to work, unless it adds to the back. No, yeah, it works.
+
+
+BUG GUESSES:
+1) addBack() is broken and does not work.
+2) removeFront() is broken, instead removes from back.
+3) isEmpty() is broken, as it would appear list begins with size 1.
+4) size() is broken, as it would appear list begins with size 1.

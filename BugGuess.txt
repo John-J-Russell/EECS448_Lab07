@@ -9,6 +9,7 @@ do removeFront and removeBack do the same thing?
 removeBack decrements size, but if no nodes are present, does not abort.
 
 Check size decrementation
+Check edge cases
 
 THINGS TESTED:
 AddFront appears to work, unless it adds to the back. No, yeah, it works.

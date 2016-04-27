@@ -20,23 +20,25 @@
 
 */
 
+
 void Test::testLinkedList()
 {
-	LinkedList<int>* list1 = new LinkedList<int>();
+	//
+	m_list1 = new LinkedList<int>();
 	//tracks bug total
-	int bugCount=0;
+	m_bugCount=0;
 	//tracks test total
-	int testCount=0;
+	m_testCount=0;
 	//used for the purpose of checking size incrementation
-	int initialSize=list1->size();
+	int initialSize=m_list1->size();
 	
 
 	std::cout<<"1) Testing for size() on creation: ";
-	testCount++;
-	if(list1->size()!=0)
+	m_testCount++;
+	if(m_list1->size()!=0)
 	{
 		std::cout<<"FAILED: size does not return zero upon creation \n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -48,11 +50,11 @@ void Test::testLinkedList()
 
 
 	std::cout<<"2) Testing isEmpty() on creation: ";
-	testCount++;
-	if(!list1->isEmpty())
+	m_testCount++;
+	if(!m_list1->isEmpty())
 	{
 		std::cout<<"FAILED: isEmpty does not return true on creation \n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -64,12 +66,12 @@ void Test::testLinkedList()
 
 
 	std::cout<<"3) Does list actually start out empty? ";
-	testCount++;
-	std::vector<int> listResults = list1->toVector();
+	m_testCount++;
+	std::vector<int> listResults = m_list1->toVector();
 	if(listResults.size() != 0)
 	{
 		std::cout<<"FAILED: List is not empty upon creation \n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -81,14 +83,14 @@ void Test::testLinkedList()
 
 
 	std::cout<<"4) Does addFront work? ";
-	testCount++;
+	m_testCount++;
 	//Add 10 entries to list using addFront
 	for(int x=0; x<10; x++)
 	{
-		list1->addFront(x);
+		m_list1->addFront(x);
 	}
 	//cast results to vector
-	listResults=list1->toVector();
+	listResults=m_list1->toVector();
 	//bool for if bad thing tripped
 	bool badFlag=false;
 	//read out from the vector, and see if they match
@@ -105,7 +107,7 @@ void Test::testLinkedList()
 	if(badFlag==true)
 	{
 		std::cout<<"FAILED: addFront is broken, and does not store values properly.\n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -118,27 +120,27 @@ void Test::testLinkedList()
 
 
 	std::cout<<"5) Checking if size incremented the correct number after adding 10 entries to front: ";
-	testCount++;
-	if( (list1->size() - initialSize) == 10)
+	m_testCount++;
+	if( (m_list1->size() - initialSize) == 10)
 	{
 		std::cout<<"PASSED: Size has incremented correctly. \n";
 	}
 	else
 	{
 		std::cout<<"FAILED: Size has not incremented correctly. \n";
-		bugCount++;
+		m_bugCount++;
 	}
 
 
 
 
 	std::cout<<"6) Does removeFront remove values correctly? ";
-	testCount++;
+	m_testCount++;
 	//reset badFlag
 	badFlag=false;
 	for(int x=0; x<5; x++)
 	{
-		if(list1->removeFront())
+		if(m_list1->removeFront())
 		{
 			//std::cout<<"Value removed. \n";
 		}
@@ -147,7 +149,7 @@ void Test::testLinkedList()
 			//std::cout<<"function claims value not removed. \n";
 		}
 	}
-	listResults=list1->toVector();
+	listResults=m_list1->toVector();
 
 	for(int x=0; x<listResults.size(); x++)
 	{
@@ -160,7 +162,7 @@ void Test::testLinkedList()
 	if(badFlag)
 	{
 		std::cout<<"FAILED: removeFront does not work as expected. \n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -169,19 +171,18 @@ void Test::testLinkedList()
 
 
 	//I'm just going to refresh this list
-	delete list1;
-	list1 = new LinkedList<int>();
+	refreshLinkedList();
 
 
 	std::cout<<"7) Does addBack work? ";
-	testCount++;
+	m_testCount++;
 	//Add 10 entries to list using addFront
 	for(int x=0; x<10; x++)
 	{
-		list1->addBack(x);
+		m_list1->addBack(x);
 	}
 	//cast results to vector
-	listResults=list1->toVector();
+	listResults=m_list1->toVector();
 	//bool for if bad thing tripped
 	badFlag=false;
 	//read out from the vector, and see if they match
@@ -198,7 +199,7 @@ void Test::testLinkedList()
 	if(badFlag==true)
 	{
 		std::cout<<"FAILED: addBack is broken, and does not store values properly.\n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -211,15 +212,15 @@ void Test::testLinkedList()
 
 
 	std::cout<<"8) Checking if size incremented the correct number after adding 10 entries to back: ";
-	testCount++;
-	if( (list1->size() - initialSize) == 10)
+	m_testCount++;
+	if( (m_list1->size() - initialSize) == 10)
 	{
 		std::cout<<"PASSED: Size has incremented correctly. \n";
 	}
 	else
 	{
 		std::cout<<"FAILED: Size has not incremented correctly. \n";
-		bugCount++;
+		m_bugCount++;
 	}
 
 
@@ -228,13 +229,13 @@ void Test::testLinkedList()
 
 
 	std::cout<<"9) Does removeBack remove values correctly (in conjunction with addBack)? ";
-	testCount++;
+	m_testCount++;
 	//reset badFlag
 	badFlag=false;
 	for(int x=0; x<5; x++)
 	{
 		//std::cout<<listResults[9-x] <<" ";
-		if(list1->removeBack())
+		if(m_list1->removeBack())
 		{
 			//std::cout<<"Value removed. \n";
 		}
@@ -243,7 +244,7 @@ void Test::testLinkedList()
 			//std::cout<<"function claims value not removed. \n";
 		}
 	}
-	listResults=list1->toVector();
+	listResults=m_list1->toVector();
 
 	for(int x=0; x<listResults.size(); x++)
 	{
@@ -256,7 +257,7 @@ void Test::testLinkedList()
 	if(badFlag)
 	{
 		std::cout<<"FAILED: removeBack does not work as expected. \n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -264,10 +265,8 @@ void Test::testLinkedList()
 	}
 
 
-
-	delete list1;
-	list1 = new LinkedList<int>;
-
+	//refresh the list
+	refreshLinkedList();
 
 
 
@@ -277,16 +276,18 @@ void Test::testLinkedList()
 	//populate list using known working method
 	for (int x=0; x<10; x++)
 	{
-		list1->addFront(x);
+		m_list1->addFront(x);
 	}
-	testCount++;
+	m_testCount++;
 	badFlag=false;
 	for(int x=0; x<5 ; x++)
 	{
-		bool tosser=list1->removeBack();
+		//this bool does nothing, just used as a receptacle
+		//for the return value
+		bool tosser=m_list1->removeBack();
 	}
 
-	listResults=list1->toVector();
+	listResults=m_list1->toVector();
 
 	for(int x=0; x<listResults.size(); x++)
 	{
@@ -299,7 +300,7 @@ void Test::testLinkedList()
 	if(badFlag)
 	{
 		std::cout<<"FAILED: removeBack does not perform to expectations.\n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -310,17 +311,15 @@ void Test::testLinkedList()
 
 
 	//refresh again
-	delete list1;
-	list1 = new LinkedList<int>;
-
+	refreshLinkedList();
 
 
 	std::cout<<"11) Does removeBack return false on an empty list? ";
-	testCount++;
-	if(list1->removeBack())
+	m_testCount++;
+	if(m_list1->removeBack())
 	{
 		std::cout<<"FAILED: removeBack returned true on an empty list! \n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -331,17 +330,15 @@ void Test::testLinkedList()
 
 
 	//refresh again
-	delete list1;
-	list1 = new LinkedList<int>;
-
+	refreshLinkedList();
 
 
 	std::cout<<"12) Does removeFront return false on an empty list? ";
-	testCount++;
-	if(list1->removeFront())
+	m_testCount++;
+	if(m_list1->removeFront())
 	{
 		std::cout<<"FAILED: removeFront returned true on an empty list! \n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -353,22 +350,21 @@ void Test::testLinkedList()
 
 
 	//and refresh again
-	delete list1;
-	list1 = new LinkedList<int>;
+	refreshLinkedList();
 
 
 
 
 	std::cout<<"13) Does search(value) work? ";
-	testCount++;
+	m_testCount++;
 	badFlag=false;
 	for(int x=0; x<10; x++)
 	{
-		list1->addFront(x);
+		m_list1->addFront(x);
 	}
 	for(int x=0; x<10; x++)
 	{
-		if(list1->search(x))
+		if(m_list1->search(x))
 		{
 			//working baybee
 		}
@@ -380,7 +376,7 @@ void Test::testLinkedList()
 	if(badFlag)
 	{
 		std::cout<<"FAILED: search could not find one or more value \n";
-		bugCount++;
+		m_bugCount++;
 	}
 	else
 	{
@@ -388,10 +384,15 @@ void Test::testLinkedList()
 	}
 
 
-	std::cout<<"SCORE: " << (testCount - bugCount) << "/" << testCount <<"\n";
+	std::cout<<"SCORE: " << (m_testCount - m_bugCount) << "/" << m_testCount <<"\n";
 
-	delete(list1);
+	delete(m_list1);
 	return;
 }
 
-
+void Test::refreshLinkedList()
+{
+	delete m_list1;
+	m_list1 = new LinkedList<int>();
+	return;
+}

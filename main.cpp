@@ -11,11 +11,12 @@
 
 int main()
 {
+	//make a test pointer
 	Test* tester= new Test();
-
+	//run the test function
 	tester->testLinkedList();
-
+	//delete test pointer
 	delete(tester);
-
+	//return
 	return(0);
 }

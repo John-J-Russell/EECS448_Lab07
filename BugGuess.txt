@@ -1,22 +1,5 @@
-Best guess for bug causes:
-1) list size starts at one, despite list being empty.
-	Is this two bugs? As m_size seems to begin as 1.
-2) addBack broken, but does increment size
-3) removeFront instead removes from the back.
-4)
-
-do removeFront and removeBack do the same thing?
-removeBack decrements size, but if no nodes are present, does not abort.
-
-Check size decrementation
-Check edge cases
-
-THINGS TESTED:
-AddFront appears to work, unless it adds to the back. No, yeah, it works.
-
-
 BUG GUESSES:
-1) addBack() is broken and does not work.
+1) addBack() is broken and does not work. It does increment size though.
 2) removeFront() is broken, instead removes from back.
-3) isEmpty() is broken, as it would appear list begins with size 1.
-4) size() is broken, as it would appear list begins with size 1.
+3) isEmpty() is broken, as it would appear list begins with m_size 1, though having no nodes.
+4) size() is broken, as it would appear list begins with m_size 1, though having no nodes.
